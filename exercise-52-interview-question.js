@@ -93,8 +93,8 @@
 // If I am able to convert the first array into an object, now, instead of having to loop over both arrays, I can just loop through the second array and just simply check if the property "z" exist in the object that we created. No it doesn't. Then, does the property "y" exist on this array? No it doesn't. Does a property "a" exist on this array? Yes it does. Then, it means we have a common item.
 
 // 8. We're going to create a new function and this function is going to say, 
-const array1 = ["a", "b", "c", "x"];
-const array2 = ["z", "y", "a"];
+// const array1 = ["a", "b", "c", "x"];
+// const array2 = ["z", "y", "a"];
 function containsCommonItem2(arr1, arr2) {
   // I want you to loop through first array and create object where properties equal items in the array.
 
@@ -140,10 +140,10 @@ function containsCommonItem2(arr1, arr2) {
       return true;
       }
   } 
-  return false
+return false
 }
 // now we have 2 for loops(one after another), which is always a+b versus what we had  nested for loops, which are O(a*b).  
-console.log(containsCommonItem2(array1, null));
+// console.log(containsCommonItem2(array1, null));
 
 
 // #11. How should I break the code? 
@@ -163,6 +163,88 @@ console.log(containsCommonItem2(array1, null));
 
 // discuss with the interviewer how you may break this function and how you may improve it such as doing checks such as doing if statement. It's good to tell the interviewer what you would do. This is why you would do versus coding it and they will essentially give you full marks for it. 
 
+// #12. using i and j for for loops is okay becuse it's a standard in javascript. However, if parameters had meanings, such as if the array1 was user array and the array2 was items array, use more useful variables/parameters might be better. Use something specific for the code. 
+
+// #13. we kind of covered it in the #11, but you want to just check with an interviewer that we're making some assumptions here, but let them know that you're thinking about the fact that the function might not always be run with 2 arrays. How can we test this function and how would you test the function to make sure that it gives the expected result?
+
+// This is where you might say that you're goig to test your code and run some unit tests. 
+
+// #14. Looking at this code, I can start telling the interviewer that "the downside to this solution is that only numbers and strings and bolleans can be used correctly because we're using an objet especially in javascript and adding properties a,b,c,x next to the object. However, object properties, especially the way we're using a javascript object, may not work if we are using non literal values." I could also say, "this code can be a little bit more readable. Although this code is better in terms of time complexity, when it comes to javascript, there's actually a more readable and cleaner way of doing it." Let me show you and this is something that is language specific. That means depending on how much you know about the language that you're working with, you might be able to use methods to simplify this process. So you can tell the interviewer, I would google specific methods on let's say arrays to see if I can just clean up the code and make it readable. 
+
+// For example, I could do the exact same function as below. I can just return arr1.some(which is a new feature) and I can use item using arrow function and I can say loop through arr2.include and check if it includes the item. 
+
+// What did we do just here? We're using some built in javascript methods to do essentially what we've done above, which is check the first array, iterate through each item in the array and if some of them include the items in array2, just return true or false. 
+const array1 = ["a", "b", "c", "x"];
+const array2 = ["z", "y", "z"];
+
+function containsCommonItem3(arr1, arr2) {
+  return arr1.some(item => arr2.includes(item));
+}
+
+console.log(containsCommonItem3(array1, array2));
+// This is what we talk about when we say there's different solutions to a problem. We now have a way to measure different solutions to a problem. 
+
+// We can say that there's actually another solution using some of the built-in methods that comes with javascript that is some would say more readable and concise. 
+
+// If youre working on a team that really knows their javascript, this is a lot easier to read than the previous soutions. Maybe, readability is more important. 
+
+// We have talked about time complexity, but we haven't really talked about space complexity and this goes into a final point. 
+
+// #15. If we talk about space complexity here, we can see that in the FIRST solution we had, we have a space complexity of O(1)/contant because we're creating any new variables and we're just using the inputs. 
+function containsCommonItem(arr1, arr2,) {
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr1[i] === arr2[j]) {
+        return true
+      }
+    }
+  }
+  return false 
+}
 
 
+// But if we look at the second solution, we're creating a new object. We're adding the first array in to an object(map), which takes up memory. Therefore this solution has a space complexity of O(a), which is first array. 
+function containsCommonItem2(arr1, arr2) {
+  let map = {};
+  for (let i = 0; i < arr1.length; i++) {
+    if (!map[arr1[i]]) {
+      const item = arr1[i];
+      map[item] = true;
+    }
+  }
+  for (let j = 0; j < arr2.length; j++) {
+    if (map[arr2[j]]) { 
+      return true;
+      }
+  } 
+return false
+}
 
+// So if an interviewer says if there's a limited memory or memory is expensive, you can tell the interviewer that although solution 2 is faster in terms of time complexity, but it is more heavy in terms of space complexity. 
+
+//# 9. As code gets more and more complex, it becomes increasingly important to write in a modular way that is small bits and pieces that read in English. A long and really hard to read code costs companies a lot of money because it's not just you working on a codebase. It's more likely tens or hundred if not thousands of developers and engineers so companies want to hire somebody that is able to write clean code that is readable that is easy for anyone to pick up code along with.
+
+// For example, in this solution, what we might want to do is separate these out into different functions.
+function containsCommonItem2(arr1, arr2) {
+
+  // maybe creating a function here that says 
+  mapArrayToObject(arr1)
+  // let map = {};
+  // for (let i = 0; i < arr1.length; i++) {
+  //   if (!map[arr1[i]]) {
+  //     const item = arr1[i];
+  //     map[item] = true;
+  //   }
+  // }
+
+  // and maybe another function that says compare array to object.
+//   for (let j = 0; j < arr2.length; j++) {
+//     if (map[arr2[j]]) { 
+//       return true;
+//       }
+//   } 
+// return false
+}
+// You don't really have to do this during an interview, but it's good to mention it and talk about the idea of modularizing your code. If a function is doing too many things, that's not idea. 
+
+// When we say modular, we want to build small pieces of code that do one thing and one thing really well. Ideally a function takes in an input and returns an output and inside of that block does just one thing. If it has to do any extra actions, perhaps you have a function that lives on the outside and this function also does one thing really well. And this code creates really testable clean code that is modular. Again, this is something really good to mention and talk about in your interview.  
