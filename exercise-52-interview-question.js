@@ -142,5 +142,27 @@ function containsCommonItem2(arr1, arr2) {
   } 
   return false
 }
+// now we have 2 for loops(one after another), which is always a+b versus what we had  nested for loops, which are O(a*b).  
+console.log(containsCommonItem2(array1, null));
 
-console.log(containsCommonItem2(array1, array2));
+
+// #11. How should I break the code? 
+// What if we had a number instead of a string? Since the beginning, we just assumed that the arrays are going to contain strings.
+// We want to tell the interviewer how we might be able to break this code. 
+
+// what if the function is called with only one array?
+// console.log(containsCommonItem2(array1)); 
+// we get an error.
+
+// we want to start thinking about how errors might arise because we want to make these functions as error free as possible. If you find ways to break the code, tell the interviewer possible solutions/ways to go around it such as can we assume always 2 params? What if I pass 0 or null in the second parameter?
+// console.log(containsCommonItem2(array1, 0));
+// false
+
+// console.log(containsCommonItem2(array1, null));
+// typeerror
+
+// discuss with the interviewer how you may break this function and how you may improve it such as doing checks such as doing if statement. It's good to tell the interviewer what you would do. This is why you would do versus coding it and they will essentially give you full marks for it. 
+
+
+
+
