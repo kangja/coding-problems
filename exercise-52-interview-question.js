@@ -75,7 +75,6 @@
 
 // What if we have a better solution?
 
-
 // const array1 = ["a", "b", "c", "x"];
 // const array2 = ["z", "y", "a"];
 
@@ -94,8 +93,11 @@
 // If I am able to convert the first array into an object, now, instead of having to loop over both arrays, I can just loop through the second array and just simply check if the property "z" exist in the object that we created. No it doesn't. Then, does the property "y" exist on this array? No it doesn't. Does a property "a" exist on this array? Yes it does. Then, it means we have a common item.
 
 // 8. We're going to create a new function and this function is going to say, 
+const array1 = ["a", "b", "c", "x"];
+const array2 = ["z", "y", "a"];
 function containsCommonItem2(arr1, arr2) {
   // I want you to loop through first array and create object where properties equal items in the array.
+
   // The second thing will be to loop through second array and check if item in second array exists on created object. 
   // Now before we even start coding this, I can right away sense that we're going to have a better performance that the first solution that was O(a*b) because we're going to have 2 loops, but these 2 loops AREN'T going to be nested. 
 
@@ -103,6 +105,42 @@ function containsCommonItem2(arr1, arr2) {
 
   // Although we haven't given a clear solution, we've been talking about how we solve the problem. The interviewer sees how we think, sees what steps we take, sees that were making smart critical decisions to go from understanding the problem to solving the problem in a naive way. Understanding why this might not be the best way and then start to think about possible solutions. 
 
-  // The beauty of this approach is that no matter whether we get this part correct and maybe our assumption is wrong, we are showing the interviewer that were thinking through a problem and we're making small logical steps towards a solution. And this is a lot better than just coding right away trying a solution and to if you get it right or wrong. An interviewer is going to have a good understanding of your abilities and your thought process this way. And these are tye type of people that they want to hire. 
+  // The beauty of this approach is that no matter whether we get this part correct and maybe our assumption is wrong, we are showing the interviewer that were thinking through a problem and we're making small logical steps towards a solution. And this is a lot better than just coding right away trying a solution and to if you get it right or wrong. An interviewer is going to have a good understanding of your abilities and your thought process this way. And these are tye type of people that they want to hire.
+  
+  // we will come back to #9 since it is easier to demonstrate once we see the finished code. 
 
+  // let's code the first array. We will loop through the first array, create an object where properties are going to match the items in the array. 
+
+
+  let map = {};
+  for (let i = 0; i < arr1.length; i++) {
+    // if there no property(so we waat to check whether a map.a exists, map.b exists, map.c exists, and map.x exists, if they don't exist, we're going to add it. 
+
+    // if (!map[i]) { the way it is right now is checking i which is 0,1,2,3. But instead, we want to check a,b,c, and x. Intead of i, it should be arr1[i].
+    if (!map[arr1[i]]) {
+      // what did we do here? We said that if map.a doesn't exist, in that case let's make array1[i], which is a, equal to item. 
+      const item = arr1[i];
+      map[item] = true;
+      // we will have a property 
+      // map
+      // {
+        // a:true
+      // }
+
+      // we will keep looping through it until we have an object called map that has all the array1 items(map a, map b, map c, map x) equals to true. 
+    }
+  }
+  // console.log(map)
+  // { a: true, b: true, c: true, x: true }
+
+
+  // loop through the second array and check if item in second array exists on created object. 
+  for (let j = 0; j < arr2.length; j++) {
+    if (map[arr2[j]]) { //if map contains the first, seond, and 3rd item in the second array that is "z", "y", and "a" as part of its property. If it's true/if it does contain them, return true.
+      return true;
+      }
+  } 
+  return false
 }
+
+console.log(containsCommonItem2(array1, array2));
