@@ -5,9 +5,9 @@
 
 // 2. We have 2 things we want to do with our function. One is we have 2 parameters, which is an array and an integer respectively. And this function is going to return booleon, whether it's true or false. 
 
-// Can I assume that we have 2 inputs, which is an array and in integer? And is it always going to be an array and integer? Or is it possible that the input might not be an array and integer? Maybe an object or string?
+// Can I assume that we have 2 inputs, which is an array and in integer? And is it always going to be an array and integer? Or is it possible that the input might not be an array and integer? Maybe an object or string or negative numbers? 
 
-// 3. How large is this array going to get? Is our goal here to be as efficient as possible withour function? What's more important to us? Is time complexity more important or is space compexity more important?
+// 3. How large is this array going to get? Is our goal here to be as efficient as possible with  our function? What's more important to us? Is time complexity more important or is space compexity more important?
 
 // 5. My brute force approach would have a nested loop where we're comparing (1,2), (1,3), (1,9), (2,1) (2,3), (2,9), (3,1), (3,2) (3,9) and see if the pairs equal to the sum. So nce we're making a pair by creating a nested loop, we're going to have a BIG O of O(n^2). 
 
@@ -19,7 +19,7 @@
 function hasPairWithSum(arr, sum){
   var len = arr.length;
   for(var i =0; i<len-1; i++){
-     for(var j = i+1; j<len; j++){
+     for(var j = i+1; j<len; j++){ //second loop starting from the second number after the first and it's why we do 1+1. 
         if (arr[i] + arr[j] === sum)
             return true;
      }
