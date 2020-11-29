@@ -23,7 +23,7 @@
 
 // 2. We have 2 things we want to do with our function. One is we have 2 parameters and this function is going to return true or false. 
 
-// Confirm with the interviewer that we have 2 inputs, which are arrays. We could also ask that if they are always to be arrays. Is it possible that the input might nobe an array? Maybe an object, or string? Confirm with the intereviewer what those cases are!
+// Confirm with the interviewer that we have 2 inputs, which are arrays. We could also ask that if they are always to be arrays. Is it possible that the input might not be an array? Maybe an object, or string? Confirm with the intereviewer what those cases are!
 
 // Don't ever jump straight into coding! First explain the approach. Talk it out!
 
@@ -46,7 +46,7 @@
 
 // Most likely, during an interview, nested for loops is something that we want to avoid. Just telling the interviewer this solution even though it's not the best solution already shows that you're thinking clearly about the problem. And it also gives you a point from where to improve from now. You don't necesssarily have to code this part and it's usually enough just to describe how it works. But depending on your time, you may or may not want to code this as well. 
 
-// The important thing is that you let the interviewer know that this is the brute force or the easy naive solution that may not be the most efficient. At least this way, yo have the right answer, then running out of time and not even having an answer. 
+// The important thing is that you let the interviewer know that this is the brute force or the easy naive solution that may not be the most efficient. At least this way, you have the right answer, then running out of time and not even having an answer. 
 
 // #6. Tell why this approach is not the best. In our case, we said that the code might not be efficient or we might not have a readable code or code might be really complicated and hard to read for other developers. 
 
@@ -71,7 +71,7 @@
 
 // #7. One of the most common patterns when it comes to nested for loops is that you might be able to use something called Hash Tables. In JavaScript, they're called objects in order to speed things up. 
 
-// Is there a way to turn this O(a*b), the time complexitiy, into something faster? Because we're doing a bit of unncessary work where we are just keep looping a z, a y, a a and then we go b z, b y, b a and so on. We're doing this comparision in the same work over and over. 
+// Is there a way to turn this O(a*b), the time complexity, into something faster? Because we're doing a bit of unncessary work where we are just keep looping a z, a y, a a and then we go b z, b y, b a and so on. We're doing this comparision in the same work over and over. 
 
 // What if we have a better solution?
 
@@ -88,7 +88,7 @@
 
 // can we check each item in array 2 to this object and see if a property exists? Ideally, we can do something like 
 // array2[index] === obj.properties.
-// ^ this is a commpn pattern you will see alot when it comes to improving time complexity.  
+// ^ this is a common pattern you will see alot when it comes to improving time complexity.  
 
 // If I am able to convert the first array into an object, now, instead of having to loop over both arrays, I can just loop through the second array and just simply check if the property "z" exist in the object that we created. No it doesn't. Then, does the property "y" exist on this array? No it doesn't. Does a property "a" exist on this array? Yes it does. Then, it means we have a common item.
 
@@ -99,7 +99,7 @@ function containsCommonItem2(arr1, arr2) {
   // I want you to loop through first array and create object where properties equal items in the array.
 
   // The second thing will be to loop through second array and check if item in second array exists on created object. 
-  // Now before we even start coding this, I can right away sense that we're going to have a better performance that the first solution that was O(a*b) because we're going to have 2 loops, but these 2 loops AREN'T going to be nested. 
+  // Now before we even start coding this, I can right away sense that we're going to have a better performance than the first solution that was O(a*b) because we're going to have 2 loops, but these 2 loops AREN'T going to be nested. 
 
   // Remember in the first solution, we had nested for loops. In the second solution, we will have 2 separate for loops. And if you remember our Big O analysis, when we have steps one after another, instead of nested, the big o becomes a + b. We have a potential solution here and have a time complexity of a + b instead of a * b. Thoese are big savings. 
 
@@ -114,7 +114,7 @@ function containsCommonItem2(arr1, arr2) {
 
   let map = {};
   for (let i = 0; i < arr1.length; i++) {
-    // if there no property(so we waat to check whether a map.a exists, map.b exists, map.c exists, and map.x exists, if they don't exist, we're going to add it. 
+    // if there no property(so we want to check whether a map.a exists, map.b exists, map.c exists, and map.x exists, if they don't exist, we're going to add it. 
 
     // if (!map[i]) { the way it is right now is checking i which is 0,1,2,3. But instead, we want to check a,b,c, and x. Intead of i, it should be arr1[i].
     if (!map[arr1[i]]) {
@@ -169,7 +169,7 @@ return false
 
 // This is where you might say that you're goig to test your code and run some unit tests. 
 
-// #14. Looking at this code, I can start telling the interviewer that "the downside to this solution is that only numbers and strings and bolleans can be used correctly because we're using an objet especially in javascript and adding properties a,b,c,x next to the object. However, object properties, especially the way we're using a javascript object, may not work if we are using non literal values." I could also say, "this code can be a little bit more readable. Although this code is better in terms of time complexity, when it comes to javascript, there's actually a more readable and cleaner way of doing it." Let me show you and this is something that is language specific. That means depending on how much you know about the language that you're working with, you might be able to use methods to simplify this process. So you can tell the interviewer, I would google specific methods on let's say arrays to see if I can just clean up the code and make it readable. 
+// #14. Looking at this code, I can start telling the interviewer that "the downside to this solution is that only numbers and strings and bolleans can be used correctly because we're using an object especially in javascript and adding properties a,b,c,x next to the object. However, object properties, especially the way we're using a javascript object, may not work if we are using non-literal values." I could also say, "this code can be a little bit more readable. Although this code is better in terms of time complexity, when it comes to javascript, there's actually a more readable and cleaner way of doing it." Let me show you and this is something that is language specific. That means depending on how much you know about the language that you're working with, you might be able to use methods to simplify this process. So you can tell the interviewer, I would google specific methods on let's say arrays to see if I can just clean up the code and make it readable. 
 
 // For example, I could do the exact same function as below. I can just return arr1.some(which is a new feature) and I can use item using arrow function and I can say loop through arr2.include and check if it includes the item. 
 
@@ -190,7 +190,7 @@ console.log(containsCommonItem3(array1, array2));
 
 // We have talked about time complexity, but we haven't really talked about space complexity and this goes into a final point. 
 
-// #15. If we talk about space complexity here, we can see that in the FIRST solution we had, we have a space complexity of O(1)/contant because we're creating any new variables and we're just using the inputs. 
+// #15. If we talk about space complexity here, we can see that in the FIRST solution we had, we have a space complexity of O(1)/contant because we're not creating any new variables and we're just using the inputs. 
 function containsCommonItem(arr1, arr2,) {
   for (let i = 0; i < arr1.length; i++) {
     for (let j = 0; j < arr2.length; j++) {
@@ -220,7 +220,7 @@ function containsCommonItem2(arr1, arr2) {
 return false
 }
 
-// So if an interviewer says if there's a limited memory or memory is expensive, you can tell the interviewer that although solution 2 is faster in terms of time complexity, but it is more heavy in terms of space complexity. 
+// So if an interviewer says if there's a limited memory or memory is expensive, you can tell the interviewer that although solution 2 is faster in terms of time complexity, it is more heavy in terms of space complexity. 
 
 //# 9. As code gets more and more complex, it becomes increasingly important to write in a modular way that is small bits and pieces that read in English. A long and really hard to read code costs companies a lot of money because it's not just you working on a codebase. It's more likely tens or hundred if not thousands of developers and engineers so companies want to hire somebody that is able to write clean code that is readable that is easy for anyone to pick up code along with.
 
